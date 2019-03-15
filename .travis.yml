@@ -1,4 +1,15 @@
 sudo: false
 language: go
-go:
-  - 1.12.x
+matrix:
+  include:
+  - go: 1.12.x
+    env: GO111MODULE=on
+
+git:
+  depth: 10
+
+install:
+  - go mod download
+
+script:
+  - go test -bench=.
